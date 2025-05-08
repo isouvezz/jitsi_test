@@ -39,7 +39,7 @@ const DEFAULT_STATE: ISettingsState = {
     startAudioOnly: false,
     startCarMode: false,
     startWithAudioMuted: false,
-    startWithVideoMuted: false,
+    startWithVideoMuted: true,
     userSelectedAudioOutputDeviceId: undefined,
     userSelectedCameraDeviceId: undefined,
     userSelectedMicDeviceId: undefined,
