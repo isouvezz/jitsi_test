@@ -168,55 +168,56 @@ function _mapStateToProps(state: IReduxState, ownProps: any) {
             submit: (newState: any) => submitAudioDeviceSelectionTab(newState, isDisplayedOnWelcomePage),
             icon: IconVolumeUp
         });
-        !_iAmVisitor && tabs.push({
-            name: SETTINGS_TABS.VIDEO,
-            component: VideoDeviceSelection,
-            labelKey: 'settings.video',
-            props: getVideoDeviceSelectionDialogProps(state, isDisplayedOnWelcomePage),
-            propsUpdateFunction: (tabState: any, newProps: ReturnType<typeof getVideoDeviceSelectionDialogProps>) => {
-                // Ensure the device selection tab gets updated when new devices
-                // are found by taking the new props and only preserving the
-                // current user selected devices. If this were not done, the
-                // tab would keep using a copy of the initial props it received,
-                // leaving the device list to become stale.
-
-                return {
-                    ...newProps,
-                    currentFramerate: tabState?.currentFramerate,
-                    localFlipX: tabState.localFlipX,
-                    selectedVideoInputId: tabState.selectedVideoInputId
-                };
-            },
-            submit: (newState: any) => submitVideoDeviceSelectionTab(newState, isDisplayedOnWelcomePage),
-            icon: IconVideo
-        });
     }
+    //     !_iAmVisitor && tabs.push({
+    //         name: SETTINGS_TABS.VIDEO,
+    //         component: VideoDeviceSelection,
+    //         labelKey: 'settings.video',
+    //         props: getVideoDeviceSelectionDialogProps(state, isDisplayedOnWelcomePage),
+    //         propsUpdateFunction: (tabState: any, newProps: ReturnType<typeof getVideoDeviceSelectionDialogProps>) => {
+    //             // Ensure the device selection tab gets updated when new devices
+    //             // are found by taking the new props and only preserving the
+    //             // current user selected devices. If this were not done, the
+    //             // tab would keep using a copy of the initial props it received,
+    //             // leaving the device list to become stale.
 
-    if (virtualBackgroundSupported && !_iAmVisitor && enableVirtualBackground) {
-        tabs.push({
-            name: SETTINGS_TABS.VIRTUAL_BACKGROUND,
-            component: VirtualBackgroundTab,
-            labelKey: 'virtualBackground.title',
-            props: getVirtualBackgroundTabProps(state, isDisplayedOnWelcomePage),
-            propsUpdateFunction: (tabState: any, newProps: ReturnType<typeof getVirtualBackgroundTabProps>,
-                    tabStates: any) => {
-                const videoTabState = tabStates[tabs.findIndex(tab => tab.name === SETTINGS_TABS.VIDEO)];
+    //             return {
+    //                 ...newProps,
+    //                 currentFramerate: tabState?.currentFramerate,
+    //                 localFlipX: tabState.localFlipX,
+    //                 selectedVideoInputId: tabState.selectedVideoInputId
+    //             };
+    //         },
+    //         submit: (newState: any) => submitVideoDeviceSelectionTab(newState, isDisplayedOnWelcomePage),
+    //         icon: IconVideo
+    //     });
+    // }
 
-                return {
-                    ...newProps,
-                    selectedVideoInputId: videoTabState?.selectedVideoInputId || newProps.selectedVideoInputId,
-                    options: tabState.options
-                };
-            },
-            submit: (newState: any) => submitVirtualBackgroundTab(newState),
-            cancel: () => {
-                const { options } = getVirtualBackgroundTabProps(state, isDisplayedOnWelcomePage);
+    // if (virtualBackgroundSupported && !_iAmVisitor && enableVirtualBackground) {
+    //     tabs.push({
+    //         name: SETTINGS_TABS.VIRTUAL_BACKGROUND,
+    //         component: VirtualBackgroundTab,
+    //         labelKey: 'virtualBackground.title',
+    //         props: getVirtualBackgroundTabProps(state, isDisplayedOnWelcomePage),
+    //         propsUpdateFunction: (tabState: any, newProps: ReturnType<typeof getVirtualBackgroundTabProps>,
+    //                 tabStates: any) => {
+    //             const videoTabState = tabStates[tabs.findIndex(tab => tab.name === SETTINGS_TABS.VIDEO)];
 
-                return submitVirtualBackgroundTab({ options }, true);
-            },
-            icon: IconImage
-        });
-    }
+    //             return {
+    //                 ...newProps,
+    //                 selectedVideoInputId: videoTabState?.selectedVideoInputId || newProps.selectedVideoInputId,
+    //                 options: tabState.options
+    //             };
+    //         },
+    //         submit: (newState: any) => submitVirtualBackgroundTab(newState),
+    //         cancel: () => {
+    //             const { options } = getVirtualBackgroundTabProps(state, isDisplayedOnWelcomePage);
+
+    //             return submitVirtualBackgroundTab({ options }, true);
+    //         },
+    //         icon: IconImage
+    //     });
+    // }
 
     if ((showSoundsSettings || showNotificationsSettings) && !_iAmVisitor) {
         tabs.push({
