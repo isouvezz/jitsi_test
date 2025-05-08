@@ -9,17 +9,20 @@ var subdir = '<!--# echo var="subdir" default="" -->';
 var subdomain = '<!--# echo var="subdomain" default="" -->';
 
 if (subdomain) {
-    subdomain = subdomain.substr(0, subdomain.length - 1).split('.')
-        .join('_')
-        .toLowerCase() + '.';
+    subdomain =
+        subdomain
+            .substr(0, subdomain.length - 1)
+            .split(".")
+            .join("_")
+            .toLowerCase() + ".";
 }
 
 // In case of no ssi provided by the webserver, use empty strings
-if (subdir.startsWith('<!--')) {
-    subdir = '';
+if (subdir.startsWith("<!--")) {
+    subdir = "";
 }
-if (subdomain.startsWith('<!--')) {
-    subdomain = '';
+if (subdomain.startsWith("<!--")) {
+    subdomain = "";
 }
 
 var enableJaaS = false;
@@ -30,7 +33,7 @@ var config = {
 
     hosts: {
         // XMPP domain.
-        domain: 'jitsi-meet.example.com',
+        domain: "jitsi-meet.example.com",
 
         // When using authentication, domain for guest users.
         // anonymousdomain: 'guest.example.com',
@@ -42,14 +45,14 @@ var config = {
         // focus: 'focus.jitsi-meet.example.com',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.' + subdomain + 'jitsi-meet.example.com',
+        muc: "conference." + subdomain + "jitsi-meet.example.com",
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    bosh: 'https://jitsi-meet.example.com/' + subdir + 'http-bind',
+    bosh: "https://jitsi-meet.example.com/" + subdir + "http-bind",
 
     // Websocket URL (XMPP)
-    websocket: 'wss://jitsi-meet.example.com/' + subdir + 'xmpp-websocket',
+    websocket: "wss://jitsi-meet.example.com/" + subdir + "xmpp-websocket",
 
     // websocketKeepAliveUrl: 'https://jitsi-meet.example.com/' + subdir + '_unlock',
 
@@ -72,7 +75,6 @@ var config = {
         // which does not match ignoreDomain, falling back to the first one that matches
         // ignoreDomain. Has no effect if undefined.
         // ignoreDomain: 'example.com',
-
         // Prefer SCTP (WebRTC data channels over the media path) over a colibri websocket.
         // If SCTP is available in the backend it will be used instead of a WS. Defaults to
         // false (SCTP is used only if available and no WS are available).
@@ -85,36 +87,26 @@ var config = {
     testing: {
         // Allows the setting of a custom bandwidth value from the UI.
         // assumeBandwidth: true,
-
         // Enables use of getDisplayMedia in electron
         // electronUseGetDisplayMedia: false,
-
         // Enables AV1 codec for FF. Note: By default it is disabled.
         // enableAV1ForFF: false,
-
         // Enables the use of the codec selection API supported by the browsers .
         // enableCodecSelectionAPI: false,
-
         // P2P test mode disables automatic switching to P2P when there are 2
         // participants in the conference.
         // p2pTestMode: false,
-
         // Enables the test specific features consumed by jitsi-meet-torture
         // testMode: false,
-
         // Disables the auto-play behavior of *all* newly created video element.
         // This is useful when the client runs on a host with limited resources.
         // noAutoPlayVideo: false,
-
         // Experiment: Whether to skip interim transcriptions.
         // skipInterimTranscriptions: false,
-
         // Dump transcripts to a <transcript> element for debugging.
         // dumpTranscript: false,
-
         // Log the audio levels.
         // debugAudioLevels: true,
-
         // Will replace ice candidates IPs with invalid ones in order to fail ice.
         // failICE: true,
     },
@@ -159,7 +151,6 @@ var config = {
     // signalling.
     // webrtcIceTcpDisable: false,
 
-
     // Media
     //
 
@@ -199,7 +190,7 @@ var config = {
 
     // Start calls with audio muted. Unlike the option above, this one is only
     // applied locally. FIXME: having these 2 options is confusing.
-    // startWithAudioMuted: false,
+    startWithAudioMuted: false,
 
     // Enabling it (with #params) will disable local audio output of remote
     // participants and to enable it back a reload is needed.
@@ -350,7 +341,7 @@ var config = {
 
     // Start calls with video muted. Unlike the option above, this one is only
     // applied locally. FIXME: having these 2 options is confusing.
-    // startWithVideoMuted: false,
+    startWithVideoMuted: true,
 
     // Desktop sharing
 
@@ -830,41 +821,28 @@ var config = {
     // - it's impossible to control the placement of buttons
     // - 'desktop' controls the "Share your screen" button
     // - if `toolbarButtons` is undefined, we fallback to enabling all buttons on the UI
-    // toolbarButtons: [
-    //    'camera',
-    //    'chat',
-    //    'closedcaptions',
-    //    'desktop',
-    //    'download',
-    //    'embedmeeting',
-    //    'etherpad',
-    //    'feedback',
-    //    'filmstrip',
-    //    'fullscreen',
-    //    'hangup',
-    //    'help',
-    //    'highlight',
-    //    'invite',
-    //    'linktosalesforce',
-    //    'livestreaming',
-    //    'microphone',
-    //    'noisesuppression',
-    //    'participants-pane',
-    //    'profile',
-    //    'raisehand',
-    //    'recording',
-    //    'security',
-    //    'select-background',
-    //    'settings',
-    //    'shareaudio',
-    //    'sharedvideo',
-    //    'shortcuts',
-    //    'stats',
-    //    'tileview',
-    //    'toggle-camera',
-    //    'videoquality',
-    //    'whiteboard',
-    // ],
+    toolbarButtons: [
+        "microphone",
+        "closedcaptions",
+        "desktop",
+        "fullscreen",
+        "fodeviceselection",
+        "hangup",
+        "profile",
+        "chat",
+        "livestreaming",
+        "etherpad",
+        "settings",
+        "raisehand",
+        "filmstrip",
+        "feedback",
+        "stats",
+        "shortcuts",
+        "tileview",
+        "help",
+        "mute-everyone",
+        "security",
+    ],
 
     // Holds values related to toolbar visibility control.
     // toolbarConfig: {
@@ -1055,7 +1033,6 @@ var config = {
     // will not function.
     // disableThirdPartyRequests: false,
 
-
     // Peer-To-Peer mode: used (if enabled) when there are just 2 participants.
     //
 
@@ -1093,31 +1070,25 @@ var config = {
 
         // The STUN servers that will be used in the peer to peer connections
         stunServers: [
-
             // { urls: 'stun:jitsi-meet.example.com:3478' },
-            { urls: 'stun:meet-jit-si-turnrelay.jitsi.net:443' },
+            { urls: "stun:meet-jit-si-turnrelay.jitsi.net:443" },
         ],
     },
 
     analytics: {
         // True if the analytics should be disabled
         // disabled: false,
-
         // Matomo configuration:
         // matomoEndpoint: 'https://your-matomo-endpoint/',
         // matomoSiteID: '42',
-
         // The Amplitude APP Key:
         // amplitudeAPPKey: '<APP_KEY>',
-
         // Enables Amplitude UTM tracking:
         // Default value is false.
         // amplitudeIncludeUTM: false,
-
         // Obfuscates room name sent to analytics (amplitude, rtcstats)
         // Default value is false.
         // obfuscateRoomName: false,
-
         // Configuration for the rtcstats server:
         // By enabling rtcstats server every time a conference is joined the rtcstats
         // module connects to the provided rtcstatsEndpoint and sends statistics regarding
@@ -1125,24 +1096,19 @@ var config = {
         // interval.
         // rtcstatsEnabled: false,
         // rtcstatsStoreLogs: false,
-
         // In order to enable rtcstats one needs to provide a endpoint url.
         // rtcstatsEndpoint: wss://rtcstats-server-pilot.jitsi.net/,
-
         // The interval at which rtcstats will poll getStats, defaults to 10000ms.
         // If the value is set to 0 getStats won't be polled and the rtcstats client
         // will only send data related to RTCPeerConnection events.
         // rtcstatsPollInterval: 10000,
-
         // This determines if rtcstats sends the SDP to the rtcstats server or replaces
         // all SDPs with an empty string instead.
         // rtcstatsSendSdp: false,
-
         // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
         // scriptURLs: [
         //      "https://example.com/my-custom-analytics.js",
         // ],
-
         // By enabling watchRTCEnabled option you would want to use watchRTC feature
         // This would also require to configure watchRTCConfigParams.
         // Please remember to keep rtcstatsEnabled disabled for watchRTC to work.
@@ -1590,7 +1556,6 @@ var config = {
     // For external entities (e. g. email), the localStorage key holding the token value for directory authentication
     // peopleSearchTokenLocation: "mytoken",
 
-
     // Options related to visitors.
     // visitors: {
     //     // Starts audio/video when the participant is promoted from visitor.
@@ -1882,7 +1847,7 @@ var config = {
 
 // Set the default values for JaaS customers
 if (enableJaaS) {
-    config.dialInNumbersUrl = 'https://conference-mapper.jitsi.net/v1/access/dids';
-    config.dialInConfCodeUrl = 'https://conference-mapper.jitsi.net/v1/access';
+    config.dialInNumbersUrl = "https://conference-mapper.jitsi.net/v1/access/dids";
+    config.dialInConfCodeUrl = "https://conference-mapper.jitsi.net/v1/access";
     config.roomPasswordNumberOfDigits = 10; // skip re-adding it (do not remove comment)
 }
